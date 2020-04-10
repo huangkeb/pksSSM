@@ -3,7 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hkb.dao.ParkMapper">
+    <cache/>
+
+    <update id="addCar" parameterType="Park" flushCache="true">
+        update park set Carno=#{carno},Cartype=#{cartype},Intime=#{intime} where Parkno = #{parkno}
+    </update>
+
     <select id="selectPark" resultType="Park">
-        select * from Park
+        select * from park
+    </select>
+
+    <select id="selectParkByNo" parameterType="String" resultType="Park">
+        select * from park where Carno = #{carno}
+    </select>
+
+    <select id="selectEmptyPark" resultType="Park">
+        select * from park where Carno is NULL
     </select>
 </mapper>

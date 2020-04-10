@@ -17,12 +17,12 @@
 <div id="displaytime"></div>
 <div class="buttondiv">
     <div class="div1">
-        <a href="Skip?action=in" class="button" id="button1">车辆入库</a>
-        <a href="Skip?action=out" class="button" id="button2">收费管理</a>
+        <a href="getIn" class="button" id="button1">车辆入库</a>
+        <a href="getOut" class="button" id="button2">收费管理</a>
     </div>
     <div class="div2">
         <a href="park/state" class="button" id="button3">空位查询</a>
-        <a href="Skip?action=recond" class="button" id="button4">记录查询</a>
+        <a href="record" class="button" id="button4">记录查询</a>
     </div>
 </div>
 </body>

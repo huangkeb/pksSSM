@@ -2,10 +2,11 @@ package com.hkb.pojo;
 
 import org.apache.ibatis.type.Alias;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Alias("Record")
-public class Record {
+public class Record implements Serializable {
     private String parkno = "";
     private String carno = "";
     private String cartype = "";

@@ -19,7 +19,7 @@
         var car_no = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
         if(car_no.test($("#carno").val())){
             $.post({
-                url:"<%=request.getContextPath()%>/CarInServlet",
+                url:"<%=request.getContextPath()%>/park/getInCheck",
                 data:{"carno":$("#carno").val()},
                 success:function (data) {
                     if(data === "full"){
@@ -78,7 +78,7 @@
     <span></span>
 </div>
 <div id="loading"></div>
-<form class="form" method="post" action="<%=request.getContextPath()%>/in">
+<form class="form" method="post" action="<%=request.getContextPath()%>/park/getIn">
     <div class="div1">车牌号码<input onblur="error()" id = "carno" name="carno" class="carno" type="text"/></div>
     <div class="div2">车辆类型</div>
     <div class="div">
@@ -91,6 +91,6 @@
     </div>
     <input class="in" type="submit" value="车辆入库" onclick="return test()"/>
 </form>
-<a href="<%=request.getContextPath()%>/Skip?action=index">返回首页</a>
+<a href="<%=request.getContextPath()%>/index">返回首页</a>
 </body>
 </html>
