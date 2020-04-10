@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+.button{
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 0.7em;
+    height: 70px;
+    line-height: 70px;
+    font-size: 32px;
+    font-family: 黑体;
+    color:#ffffff;
+}
+#button1{
+    background-color: #756486;
+    width: 20%;
+    margin-right: 200px;
+}
+#button1:hover{
+    background-color: #7f0000
+}
+#button2{
+    background-color: #486231;
+    width: 20%;
+}
+#button2:hover{
+    background-color: #7f0000
+}
+#button3{
+    background-color: #513548;
+    width: 20%;
+    margin-right: 200px;
+}
+#button3:hover{
+    background-color: #7f0000
+}
+#button4{
+    background-color: #168465;
+    width: 20%;
+}
+#button4:hover{
+    background-color: #7f0000
+}
+.div1{
+    margin-top: 140px;
+}
+.div2{
+    margin-top: 110px;
+}

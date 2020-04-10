@@ -1,0 +1,73 @@
+@CHARSET "UTF-8";
+a{
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 0.7em;
+    height: 70px;
+    line-height: 70px;
+    font-size: 32px;
+    font-family: 黑体;
+    color:#ffffff;
+    width: 20%;
+    background-color: #168465;
+    position: absolute;
+    bottom: 40px;
+    right: 15%;
+}
+a:hover{
+    background-color: #7f0000;
+}
+.search{
+    line-height: 70px;
+    font-size: 32px;
+    font-family: 黑体;
+    color:#ffffff;
+    background-color: #944143;
+    position: absolute;
+    border-radius: 0.7em;
+    border :0;
+    bottom: 150px;
+    right: 15%;
+    height: 70px;
+    width:20%;
+    cursor:pointer;
+}
+.search:hover{
+    background-color: #7f0000;
+}
+.div1{
+    width:70%;
+    font-size: 30px;
+    margin-left: 10%;
+    margin-top: 40px;
+}
+.carno{
+    border-radius: 0.7em;
+    font-size: 30px;
+    text-align: center;
+    border:0;
+    margin-left: 20px;
+    height: 50px;
+    width: 40%;
+    color:#7f0000;
+}
+
+#error_message{
+    position: absolute;
+    top:260px;
+    right:270px;
+    color:#7f0000;
+    font-size: 30px;
+}
+
+#loading{
+    visibility: hidden;
+    position: absolute;
+    z-index: 997;
+    width: 99.9%;
+    height: 99.9%;
+    opacity: 0.2;
+    top:0;
+    right: 0;
+    background: #000;
+}

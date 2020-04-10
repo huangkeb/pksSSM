@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+.back{
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 0.7em;
+    height: 70px;
+    line-height: 70px;
+    font-size: 32px;
+    font-family: 黑体;
+    color:#ffffff;
+    width: 20%;
+    background-color: #168465;
+    position: absolute;
+    bottom: 40px;
+    right: 15%;
+}
+.back:hover{
+    background-color: #7f0000;
+}
+table{
+    width:70%;
+    margin-left: 15%;
+    margin-top: 50px;
+    line-height: 45px;
+    text-align: center;
+    border-spacing:0;
+    font-size: 20px;
+}
+table th{background:#0090D7;font-weight:normal;line-height:30px;font-size:14px;color:#FFF;}
+table tr:nth-child(odd){background:#F4F4F4;}
+table tr:nth-child(even){background:#73B1E0;}
+table td:nth-child(even){color:#956132;}
+table tr:hover{background:#7f0000;color:#FFF;}
+table td,table th{border:1px solid #EEE;}
+.holder{
+    position: absolute;
+    bottom: 150px;
+    right: 47%;
+}

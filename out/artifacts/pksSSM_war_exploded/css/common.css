@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+.body {
+    background: url("../image/timg.jpg") no-repeat;
+    background-size:100% 100%;
+    text-align: center;
+    height: 630px;
+    margin: 0 0 3px 0;
+}
+.head{
+    font-size: 65px;
+    font-family: 华文行楷;
+    margin-top: 120px;
+    color:#000000;
+}
+#displaydate{
+	display: inline-block;
+	font-size: 20px;
+	border-top: 20px;
+	margin-left: 45%;
+}
+#displaytime{
+	display: inline-block;
+	font-size: 20px;
+	border-top: 20px;
+}
