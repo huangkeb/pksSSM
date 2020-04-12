@@ -18,26 +18,20 @@
     function check() {
         $("#loading").css("visibility","visible");
         $("#preloader_2").css("visibility","visible");
-        if($("#carno").val() == ""){
-            swal("","请输入您的车牌！","error");
+        if($("#carno").val() == "" && $("#time").val() == "" && $("#time1").val() == ""){
+            swal("","请至少选择一项！","error");
             $("#loading").css("visibility","hidden");
             $("#preloader_2").css("visibility","hidden");
             return false;
         }
-        else if($("#time").val() == ""){
-            swal("","请输入开始时间！","error");
-            $("#loading").css("visibility","hidden");
-            $("#preloader_2").css("visibility","hidden");
-            return false;
-        }
-        else if($("#time1").val() == ""){
+        else if($("#time").val() != "" && $("#time1").val() == ""){
             swal("","请输入结束时间！","error");
             $("#loading").css("visibility","hidden");
             $("#preloader_2").css("visibility","hidden");
             return false;
         }
-        else if($("#time").val().toString() > $("#time1").val().toString()){
-            swal("","开始时间晚于结束时间！","error");
+        else if($("#time1").val() != "" && $("#time").val() == ""){
+            swal("","请输入开始时间！","error");
             $("#loading").css("visibility","hidden");
             $("#preloader_2").css("visibility","hidden");
             return false;
@@ -47,6 +41,14 @@
             $("#loading").css("visibility","hidden");
             $("#preloader_2").css("visibility","hidden");
             return false;
+        }
+        else if($("#time1").val() != "" && $("#time").val() != ""){
+            if($("#time").val().toString() >= $("#time1").val().toString()){
+                swal("","开始时间晚于结束时间！","error");
+                $("#loading").css("visibility","hidden");
+                $("#preloader_2").css("visibility","hidden");
+                return false;
+            }
         }
         else{
             return true;
@@ -61,7 +63,9 @@
         else {
             $("#error_message").html("");
         }
-
+        if($("#carno").val()==""){
+            $("#error_message").html("");
+        }
     }
 </script>
 <div class="head">
@@ -77,12 +81,12 @@
     <span></span>
 </div>
 <div id="loading"></div>
-<form method="post" action="<%=request.getContextPath()%>/recond" onSubmit = "return check()">
+<form method="post" action="<%=request.getContextPath()%>/record/query" onSubmit = "return check()">
     <div class="div1">车牌号码<input name="carno" onblur="car_no()" id="carno" class="carno" type="text"/></div>
     <div class="div1">开始时间<input name="begintime" id="time" class="carno" type="datetime-local"/></div>
     <div class="div1">结束时间<input name="endtime" id="time1" class="carno" type="datetime-local"/></div>
     <input type="submit" class="search" value="记录查询"/>
 </form>
-<a href="<%=request.getContextPath()%>/Skip?action=index">返回首页</a>
+<a href="<%=request.getContextPath()%>/index">返回首页</a>
 </body>
 </html>

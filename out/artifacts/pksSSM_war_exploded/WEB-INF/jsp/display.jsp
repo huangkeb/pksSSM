@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ page import = "com.hkb.Bean.Recond,java.util.*" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,7 +8,7 @@
     <link href="<%=request.getContextPath()%>/css/common.css" type="text/css" rel="stylesheet"/>
     <link href="<%=request.getContextPath()%>/css/displayrecond.css" type="text/css" rel="stylesheet"/>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/jPages.css">
     <script src="<%=request.getContextPath()%>/js/jPages.js"></script>
 </head>
@@ -30,7 +30,6 @@
     });
 </script>
 <div class="holder"></div>
-<% ArrayList<Recond> recondList = (ArrayList<Recond>)request.getAttribute("recondlist");Recond recond;%>
 <table class="table">
     <thead>
     <tr>
@@ -44,21 +43,19 @@
     </tr>
     </thead>
     <tbody id="movies">
-    <% for(int i = 1;i<=recondList.size();i++){
-        recond = recondList.get(i-1);%>
-    <tr>
-        <td><%= recond.getParkno() %></td>
-        <td><%= recond.getCarno() %></td>
-        <td><%= recond.getCartype() %></td>
-        <td><%= recond.getIntime() %></td>
-        <td><%= recond.getOuttime() %></td>
-        <td><%= recond.getWaittime() %></td>
-        <td><%= recond.getCost() %></td>
-    </tr>
-    <%} %>
+    <c:forEach var="record" items="${records}">
+        <tr>
+            <td>${record.parkno}</td>
+            <td>${record.carno}</td>
+            <td>${record.cartype}</td>
+            <td>${record.intime}</td>
+            <td>${record.outtime}</td>
+            <td>${record.waittime}</td>
+            <td>${record.cost}</td>
+        </tr>
+    </c:forEach>
     </tbody>
 </table>
-<a class="back" href="<%=request.getContextPath()%>/Skip?action=index">返回首页</a>
-
+<a class="back" href="<%=request.getContextPath()%>/index">返回首页</a>
 </body>
 </html>

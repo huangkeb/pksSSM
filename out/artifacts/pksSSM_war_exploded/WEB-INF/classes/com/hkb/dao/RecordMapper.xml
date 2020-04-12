@@ -7,4 +7,25 @@
     <insert id="insertRecord" parameterType="Record" flushCache="true">
         insert into recond value (#{parkno},#{carno},#{cartype},#{intime},#{outtime},#{waittime},#{cost})
     </insert>
+
+    <sql id="selectRecord">
+        <if test="carno != null">
+            and Carno = #{carno}
+        </if>
+        <if test="begin != null">
+            and Outtime &gt; #{begin}
+        </if>
+        <if test="end != null">
+            and Outtime &lt; #{end}
+        </if>
+    </sql>
+
+    <select id="selectRecord" parameterType="map" resultType="Record">
+        select * from recond
+        <where>
+            <include refid="selectRecord"></include>
+        </where>
+        ORDER BY Outtime DESC
+    </select>
+
 </mapper>
