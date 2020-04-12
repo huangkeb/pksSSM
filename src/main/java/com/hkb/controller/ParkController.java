@@ -50,4 +50,22 @@ public class ParkController {
     public String getInCheck(String carno){//车辆入库前Ajax校验接口
         return parkService.carInCheck(carno);
     }
+
+    @PostMapping("/getOutCheck")
+    @ResponseBody
+    public String getOutCheck(String carno){
+        return parkService.carOutCheck(carno);
+    }
+
+    @PostMapping("/getOut")
+    public String getOut(String carno,Model model){
+        String message = parkService.deleteCar(carno);
+        model.addAttribute("title","车辆出库结果");
+        if(message.equals(Constant.CarOutFailure)){
+            model.addAttribute("message","系统错误，请稍后重试！");
+            return "result";
+        }
+        model.addAttribute("message","出库成功，您本次的费用为"+message+"元,祝您一路平安！");
+        return "pay";
+    }
 }

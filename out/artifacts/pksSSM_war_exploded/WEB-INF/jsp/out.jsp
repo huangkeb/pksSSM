@@ -18,7 +18,7 @@
         var car_no = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
         if (car_no.test($("#carno").val())) {
             $.post({
-                url: "<%=request.getContextPath()%>/CarOutServlet",
+                url: "<%=request.getContextPath()%>/park/getOutCheck",
                 data: {"carno": $("#carno").val()},
                 success: function (data) {
                     if (data === "false") {
@@ -67,10 +67,10 @@
     <span></span>
 </div>
 <div id="loading"></div>
-<form class="form" action="<%=request.getContextPath()%>/Out" method="post">
+<form class="form" action="<%=request.getContextPath()%>/park/getOut" method="post">
     <div class="div">车牌号码<input name="carno" id="carno" onblur="error()" class="carno" type="text"/></div>
     <input type="submit" class="out" onclick="return test()" value="出库结算"/>
 </form>
-<a href="<%=request.getContextPath()%>/Skip?action=index">返回首页</a>
+<a href="<%=request.getContextPath()%>/index">返回首页</a>
 </body>
 </html>

@@ -9,6 +9,10 @@
         update park set Carno=#{carno},Cartype=#{cartype},Intime=#{intime} where Parkno = #{parkno}
     </update>
 
+    <update id="deleteCar" parameterType="String" flushCache="true">
+        update park set Carno = null,Cartype = null,Intime = null where Carno = #{carno}
+    </update>
+
     <select id="selectPark" resultType="Park">
         select * from park
     </select>

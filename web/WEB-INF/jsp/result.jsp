@@ -19,7 +19,7 @@
     ${message}
 </div>
 <div>
-    <a href="Skip?action=index">返回首页</a>
+    <a href="<%=request.getContextPath()%>/index">返回首页</a>
 </div>
 </body>
 </html>

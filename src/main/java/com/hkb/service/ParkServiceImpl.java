@@ -2,14 +2,15 @@ package com.hkb.service;
 
 import com.hkb.Utils.Constant;
 import com.hkb.dao.ParkMapper;
+import com.hkb.dao.RecordMapper;
 import com.hkb.pojo.Park;
+import com.hkb.pojo.Record;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.sql.Timestamp;
+import java.util.*;
 
 @Service("park")
 public class ParkServiceImpl implements ParkService{
@@ -60,14 +61,62 @@ public class ParkServiceImpl implements ParkService{
         else return Constant.CarInFailure;
     }
 
+    public String deleteCar(String carno) {
+        ParkMapper parkMapper = sqlSession.getMapper(ParkMapper.class);
+        RecordMapper recordMapper = sqlSession.getMapper(RecordMapper.class);
+        Park park = parkMapper.selectParkByNo(carno);
+        String parkno = park.getParkno();
+        String cartype = park.getCartype();
+        Timestamp intime = park.getIntime();
+        Date data_time = new Date();
+        Timestamp outtime = new Timestamp(data_time.getTime());//当前时间
+        Calendar cale = Calendar.getInstance();
+        Calendar calendar = new GregorianCalendar(cale.get(Calendar.YEAR),cale.get(Calendar.MONTH),cale.get(Calendar.DAY_OF_MONTH),8,0,0);
+        Date date = calendar.getTime();
+        Timestamp deadline = new Timestamp(date.getTime());//收费标准变化时间点
+        long waittime =  outtime.getTime() - intime.getTime();
+        int wait = (int)(waittime/60000);
+        int cost = 0;
+        int waithour = wait/60;
+        int waitmin = wait%60;
+        int day = waithour/24;
+        int waitHour = waithour%24;
+        cost+=16*day;
+        if(outtime.after(deadline)){
+            if(waitmin<60&&waitmin>15&&waitHour ==0){
+                cost+=4;
+            }
+            else if(waitHour<4&&waitHour>=1){
+                cost+=4*waitHour;
+                int minter = wait - day*24*60 - waitHour*60;
+                minter /=30;
+                minter+=1;
+                cost+=minter*2;
+            }
+            else if(waitHour>=4){
+                cost+=16;
+            }
+        }
+        else{
+            cost+=4;
+        }
+        if(cartype.equals("大型客车")||cartype.equals("施工挂车")||cartype.equals("载货卡车")){
+            cost*=2;
+        }
+        Record record = new Record(parkno,carno,cartype,intime,outtime,wait,cost);
+        int delete = parkMapper.deleteCar(carno);
+        int insert = recordMapper.insertRecord(record);
+        if(delete == 1 && insert == 1){
+            return String.valueOf(cost);
+        }
+        else {
+            return Constant.CarOutFailure;
+        }
+    }
+
     public List<Park> selectPark() {
         ParkMapper mapper = sqlSession.getMapper(ParkMapper.class);
         return mapper.selectPark();
-    }
-
-    public List<Park> selectEmptyPark() {
-        ParkMapper mapper = sqlSession.getMapper(ParkMapper.class);
-        return mapper.selectEmptyPark();
     }
 
     public String carInCheck(String carno) {
@@ -81,5 +130,14 @@ public class ParkServiceImpl implements ParkService{
         else {
             return Constant.CarExist;
         }
+    }
+
+    public String carOutCheck(String carno) {
+        ParkMapper mapper = sqlSession.getMapper(ParkMapper.class);
+        Park park = mapper.selectParkByNo(carno);
+        if(park == null){
+            return Constant.CarNotExist;
+        }
+        else return Constant.CarExist;
     }
 }

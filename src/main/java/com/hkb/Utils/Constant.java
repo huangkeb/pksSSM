@@ -5,5 +5,6 @@ public class Constant {
     public static final String CarExist = "exist";
     public static final String AllowIn = "true";
     public static final String CarInFailure = "false";
-
+    public static final String CarNotExist = "false";
+    public static final String CarOutFailure = "error";
 }

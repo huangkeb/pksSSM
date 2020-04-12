@@ -19,7 +19,7 @@
     ${message}
 </div>
 <div>
-    <a href="#">支付费用</a>
+    <a href="<%=request.getContextPath()%>/index">支付费用</a>
 </div>
 </body>
 </html>
